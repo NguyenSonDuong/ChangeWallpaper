@@ -1,0 +1,9 @@
+C:\Users\NguyenSonDuong\Documents\VisualCShapeProject\ChangeWallpaper\ChangeWallpaper\bin\Debug\ChangeWallpaper.exe.config
+C:\Users\NguyenSonDuong\Documents\VisualCShapeProject\ChangeWallpaper\ChangeWallpaper\bin\Debug\ChangeWallpaper.exe
+C:\Users\NguyenSonDuong\Documents\VisualCShapeProject\ChangeWallpaper\ChangeWallpaper\bin\Debug\ChangeWallpaper.pdb
+C:\Users\NguyenSonDuong\Documents\VisualCShapeProject\ChangeWallpaper\ChangeWallpaper\obj\Debug\ChangeWallpaper.csprojResolveAssemblyReference.cache
+C:\Users\NguyenSonDuong\Documents\VisualCShapeProject\ChangeWallpaper\ChangeWallpaper\obj\Debug\ChangeWallpaper.Form1.resources
+C:\Users\NguyenSonDuong\Documents\VisualCShapeProject\ChangeWallpaper\ChangeWallpaper\obj\Debug\ChangeWallpaper.Properties.Resources.resources
+C:\Users\NguyenSonDuong\Documents\VisualCShapeProject\ChangeWallpaper\ChangeWallpaper\obj\Debug\ChangeWallpaper.csproj.GenerateResource.Cache
+C:\Users\NguyenSonDuong\Documents\VisualCShapeProject\ChangeWallpaper\ChangeWallpaper\obj\Debug\ChangeWallpaper.exe
+C:\Users\NguyenSonDuong\Documents\VisualCShapeProject\ChangeWallpaper\ChangeWallpaper\obj\Debug\ChangeWallpaper.pdb
