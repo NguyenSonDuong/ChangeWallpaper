@@ -12,15 +12,51 @@ namespace ChangeWallpaper
 {
     public partial class Form1 : Form
     {
-        String anh1;
-        String anh2;
-        bool isChange;
+        String macdinh;
+        String chuyen;
+        bool isChange = false;
+        enum KeyFirst
+        {
+            None = 0,
+            Alt = 1,
+            Control = 2,
+            Shift = 4,
+            Win = 8
+        }
+
         public Form1()
         {
             InitializeComponent();
-            ChangeWallpaper.RegisterHotKey(this.Handle, 1999, (int)ChangeWallpaper.KeyModifier.Alt, Keys.F5.GetHashCode());
-            ChangeWallpaper.RegisterHotKey(this.Handle, 2000, (int)ChangeWallpaper.KeyModifier.Shift, Keys.F4.GetHashCode());
-            ChangeWallpaper.RegisterHotKey(this.Handle, 2001, (int)ChangeWallpaper.KeyModifier.Control, Keys.F4.GetHashCode());
+            Wallpaper.RegisterHotKey(this.Handle, 1999, (int)KeyFirst.Shift, Keys.F3.GetHashCode());
+            Wallpaper.RegisterHotKey(this.Handle, 2000, (int)KeyFirst.Shift, Keys.F9.GetHashCode());
+            Wallpaper.RegisterHotKey(this.Handle, 2001, (int)KeyFirst.Shift, Keys.F10.GetHashCode());
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+            if(m.Msg == 0x0312)
+            {
+                int id = m.WParam.ToInt32();
+                if (id == 1999)
+                {
+                    if (isChange)
+                    {
+                        Wallpaper.ChangerWallpaper(macdinh);
+                        isChange = false;
+                    }else
+                    {
+                        Wallpaper.ChangerWallpaper(chuyen);
+                        isChange = true;
+                    }
+                   
+                }else if(id == 2000)
+                {
+                    Wallpaper.ShowWindow(this.Handle, 0);
+                }else if(id == 2001) {
+                    Wallpaper.ShowWindow(this.Handle, 1);
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,70 +64,23 @@ namespace ChangeWallpaper
             OpenFileDialog open = new OpenFileDialog();
             if(open.ShowDialog() == DialogResult.OK)
             {
-                
-                anh1 = open.FileName;
-                textBox1.Text = anh1;
+                macdinh = open.FileName;
             }
         }
-        protected override void WndProc(ref Message m)
-        {
-            base.WndProc(ref m);
-            // thi thoảng mk hay quên mấy giá trị này haha
-            // trong này là message trả về từ sự kiện nhấn phím tắt mà bạn đã đăng ký
-            // ví dụ như sau
-            // trong này bạn có thể làm mọi thứ với bài hôm nay thì mk sẽ đổi ảnh nền desktop
-            if(m.Msg == 0x0312)
-            {
-                int id = m.WParam.ToInt32();
-                if(id == 1999)
-                {
-                    if (isChange)
-                    {
-                        ChangeWallpaper.SetDesktopWallpaper(anh1);
-                        isChange = false;
-                    }
-                    else
-                    {
-                        ChangeWallpaper.SetDesktopWallpaper(anh2);
-                        isChange = true;
-                    }
-                }else if(id == 2000)
-                {
-                    Application.Exit();
-                }
-                else if(id == 2001)
-                {
-                    Show();
-                }
-                
-                
-            }
-        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
-            if(open.ShowDialog() == DialogResult.OK)
+            if (open.ShowDialog() == DialogResult.OK)
             {
-                anh2 = open.FileName;
-                textBox2.Text = anh2;
+                chuyen = open.FileName;
             }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ChangeWallpaper.UnregisterHotKey(this.Handle, 1999);
-            ChangeWallpaper.UnregisterHotKey(this.Handle, 2000);
+            Wallpaper.UnregisterHotKey(this.Handle, 1999);
         }
         
-
-        private void đóngToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
     }
 }
